@@ -1,8 +1,23 @@
-let overScan;
-let pathCount;
-let paths;
+let overScan = 200;
+let pathCount = Math.floor(RN(20, 400));
+let paths = [];
+let segmentCountMin = Math.floor(RN(5, 7));
+let segmentCountMax = Math.floor(RN(5, 30));
+let magnitudeMin = Math.floor(RN(6, 8));
+let magnitudeMax = Math.floor(RN(20, 30));
+let pointWeight = RN(3, 8);
+let curveWeight = RN(0.125, 1.25);
+let colorHue = Math.floor(RN(0, 360));
+let colorSaturation = Math.floor(RN(10, 80));
 let sampleImage;
 let sampleImageCanvas;
+
+$fx.features({
+  "A random feature": 5,
+  "A random boolean": $fx.rand() > 0.5,
+  "A random string": ["A", "B", "C", "D"].at(Math.floor($fx.rand()*4)),
+  "Path Count": pathCount,
+});
 
 function preload() {
   sampleImage = loadImage('sampleImage.png');
@@ -10,28 +25,30 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  colorMode(HSL, 360, 100, 100, 1);
   noStroke();
   noFill();
-
-  overScan = 200;
-  pathCount = 200;
-  paths = [];
 
   sampleImageCanvas = createGraphics(windowWidth + overScan * 2, windowHeight + overScan * 2);
   sampleImageCanvas.image(sampleImage, 0, 0, windowWidth + overScan * 2, windowHeight + overScan * 2);
 
   for(let i = 0; i < pathCount; i++) {
+    let colorHueRange = Math.floor(RN(0, 100));
+
     paths.push(
       new Path({
-        startingSegment: createVector(random(0 - overScan / 2, windowWidth + overScan / 2), random(0 - overScan / 2, windowHeight + overScan / 2)),
-        pointWeight: 6,
-        curveWeight: 0.5,
-        curveColor: color(200, 0, 0),
-        segmentCount: floor(random(5, 24)),
-        magnitude: floor(random(8, 24)),
+        startingSegment: createVector(RN(0 - overScan / 2, windowWidth + overScan / 2), RN(0 - overScan / 2, windowHeight + overScan / 2)),
+        pointWeight: pointWeight,
+        curveWeight: curveWeight,
+        curveColor: color(colorHue + colorHueRange, colorSaturation, 50),
+        activeColor: color(colorHue + colorHueRange, colorSaturation, 20),
+        segmentCount: floor(RN(segmentCountMin, segmentCountMax)),
+        magnitude: floor(RN(magnitudeMin, magnitudeMax)),
       })
     );
   }
+
+  setInterval(refresh, 5000);
 
   // let total = 0;
   // paths.forEach(path => {
@@ -43,7 +60,7 @@ function setup() {
 }
 
 function draw() {
-  background(255, 245, 247);
+  background(color(colorHue, colorSaturation, 98));
   //image(sampleImage, 0, 0, windowWidth, windowHeight);
   //drawGridHeadings();
 
@@ -52,6 +69,10 @@ function draw() {
   });
 
   noLoop();
+}
+
+function refresh() {
+  window.location.reload();
 }
 
 function drawGridHeadings() {

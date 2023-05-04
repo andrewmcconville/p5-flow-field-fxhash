@@ -7,6 +7,7 @@ class Path {
     this.pointWeight = config.pointWeight;
     this.curveWeight = config.curveWeight;
     this.curveColor = config.curveColor;
+    this.activeColor = config.activeColor;
 
     this.setup();
   }
@@ -60,7 +61,7 @@ class Path {
   }
 
   drawActiveSegment() {
-    stroke(100, 0, 0);
+    stroke(this.activeColor);
     this.segments[2].pointWeight *= 1.5;
     this.segments[2].draw();
   }
