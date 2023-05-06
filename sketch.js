@@ -40,8 +40,8 @@ function setup() {
         startingSegment: createVector(RN(0 - overScan / 2, windowWidth + overScan / 2), RN(0 - overScan / 2, windowHeight + overScan / 2)),
         pointWeight: pointWeight,
         curveWeight: curveWeight,
-        curveColor: color(colorHue + colorHueRange, colorSaturation, 50),
-        activeColor: color(colorHue + colorHueRange, colorSaturation, 20),
+        curveColor: color(colorHue + colorHueRange, colorSaturation, 70),
+        activeColor: color(colorHue + colorHueRange, colorSaturation, 90),
         segmentCount: floor(RN(segmentCountMin, segmentCountMax)),
         magnitude: floor(RN(magnitudeMin, magnitudeMax)),
       })
@@ -60,7 +60,7 @@ function setup() {
 }
 
 function draw() {
-  background(color(colorHue, colorSaturation, 98));
+  background(color(colorHue, colorSaturation, 18));
   //image(sampleImage, 0, 0, windowWidth, windowHeight);
   //drawGridHeadings();
 
