@@ -10,8 +10,7 @@ class Segment {
   }
 
   setup() {
-    this.heading = sampleImageCanvas.get(this.start.x + overScan, this.start.y + overScan);
-    this.heading = map(this.heading[0], 0, 255, -PI, PI);
+    this.heading = noiseField.getValue(this.start.x, this.start.y);
 
     this.end.setMag(this.magnitude);
     this.end.setHeading(this.heading);
@@ -19,7 +18,8 @@ class Segment {
   }
 
   draw() {
-    strokeWeight(this.pointWeight);
-    point(this.start.x, this.start.y);
+    //strokeWeight(this.pointWeight);
+    //point(this.start.x, this.start.y);
+    circle(this.start.x, this.start.y, this.pointWeight);
   }
 }

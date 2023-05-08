@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flow Field</title>
   <style>
+    html {
+      background-color: #444;
+    }
     body {
       padding: 0;
       margin: 0;
@@ -19,7 +22,23 @@
     let search = new URLSearchParams(window.location.search)
     let alphabet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
     var fxhash = search.get('fxhash') || "oo" + Array(49).fill(0).map(_=>alphabet[(Math.random()*alphabet.length)|0]).join('')
-    //fxhash = "ooiyhuUnuAL4j49UiqAkx3h2Sn5JJ7GyTCudZpstfaWyj6xNxLA"
+    //fxhash = "oou2HDioR61scR9FBDezHfsHcj69cQ6UtBjWyYbTK5CZLi79mk7"
+    //fxhash = "oorAzGpHMXjymSjR4N621BtRZkg3W196vCV3BWDWSaGnrqAf8LE"
+    //fxhash= "ooY6tjPn6ksuUwzVXRhpM1hbvqGqBcKS31x7D4tF8BfxCFgG7rq"
+    //fxhash = "ooKqeR1iYUNqsPLU862NoPxq2DoFnJQQ7vsKpTgdB2ZSRm4K8WE"
+    //fxhash = "oojacBhVbgngLyDFMCRTJmNjybGm8VaXR5ZgaKEnBanvRYDJpYF"
+    //fxhash = "oo3FcnSFtwGgsc4hf9acbMVvkuXMhFp87h5oLqTbS8AHKnSBH6N"
+    //fxhash = "ooXgomAX7HUiLbbr8ESodEfuPDCPRWDsMMHUDvG3our3Kjh7V43"
+    //fxhash = "ooXDFSmjtBdZ7BE5XbTDJ6EKoEgFUrc42HwBVrX3cjjKbEPoude"
+    //fxhash = "ooFq4zQV2wf6DHooDaXzpa7NwTad88Ntk1dzS5SKarmcoV4HPm6"
+    //fxhash = "ooRqAoK76yY6UcyAkWpP7hmJXFT2esxrUaKjgzP8v7WCLzDs2nf"
+    //fxhash = "oo2mBzK2ECJR1STPBLHL1UTqFRpo6axJXirXft8z75ZkUHFXFbt"
+    //fxhash = "oopbQU7gapk835bBC3aCZ5WdCPffGAPLmUa2Sj2JbGxT8QySBW7"
+    //fxhash = "oo2QZD7kgLG9Fx7Vot2Rd5sibaD72sNiufwomAcUmU774X543rv"
+    //fxhash = "ooyNLt7ocqfVmPVKobhL2xvjcm6RAidD2d8i7JUZ6dmNSmUBCFw"
+    //fxhash = "oo3mvFcXtu8zLRodULkDgxC2VN746ijyFRnGwcXJcfPC45zj9kX"
+    //fxhash = "oo4KgX3tnEv1ddfz8V1KjjUAFkKv4yYU3dLRHEfTPV9Twk2THeB"
+    //fxhash = "ooc1vfxhueDnhSqUJKDnT3hhrGmZ8aK6x4nor37ni8rsyuDivuz"
     let b58dec = str=>[...str].reduce((p,c)=>p*alphabet.length+alphabet.indexOf(c)|0, 0)
     let fxhashTrunc = fxhash.slice(2)
     let regex = new RegExp(".{" + ((fxhash.length/4)|0) + "}", 'g')
@@ -359,6 +378,7 @@
   <main></main>
   <script src="p5.js"></script>
   <script src="sketch.js"></script>
+  <script src="NoiseField.js"></script>
   <script src="Path.js"></script>
   <script src="Segment.js"></script>
 </body>

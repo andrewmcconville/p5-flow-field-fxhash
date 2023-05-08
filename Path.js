@@ -7,7 +7,8 @@ class Path {
     this.pointWeight = config.pointWeight;
     this.curveWeight = config.curveWeight;
     this.curveColor = config.curveColor;
-    this.activeColor = config.activeColor;
+    this.pointColor = config.pointColor;
+    this.highlightColor = config.highlightColor;
 
     this.setup();
   }
@@ -41,6 +42,7 @@ class Path {
   draw() {
     strokeWeight(this.curveWeight);
     stroke(this.curveColor);
+    noFill();
     beginShape();
     this.segments.forEach(segment => {
       curveVertex(segment.start.x, segment.start.y);
@@ -51,17 +53,21 @@ class Path {
       if (index == 0 || index == this.segments.length - 1) {
         //console.log(index)
       } else {
-        stroke(this.curveColor);
+        //stroke(this.pointColor);
+        noStroke();
+        fill(this.pointColor);
         segment.pointWeight = lerp(this.pointWeight, this.curveWeight * 2, (index + 1) / (this.segments.length - 2));
         segment.draw();
       }
     });
 
-    this.drawActiveSegment();
+    this.drawHighlightSegment();
   }
 
-  drawActiveSegment() {
-    stroke(this.activeColor);
+  drawHighlightSegment() {
+    //stroke(this.pointColor);
+    noStroke();
+    fill(this.highlightColor);
     this.segments[2].pointWeight *= 1.5;
     this.segments[2].draw();
   }
