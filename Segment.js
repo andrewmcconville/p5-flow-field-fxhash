@@ -4,7 +4,7 @@ class Segment {
     this.end = createVector(0, 1);
     this.magnitude = config.magnitude;
     this.heading = 0;
-    this.pointWeight = config.pointWeight;
+    this.pointDiameter = config.pointDiameter;
 
     this.setup();
   }
@@ -18,8 +18,7 @@ class Segment {
   }
 
   draw() {
-    //strokeWeight(this.pointWeight);
-    //point(this.start.x, this.start.y);
-    circle(this.start.x, this.start.y, this.pointWeight);
+    noStroke();
+    circle(this.start.x, this.start.y, this.pointDiameter);
   }
 }

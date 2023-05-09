@@ -4,7 +4,7 @@ class Path {
     this.startingSegment = config.startingSegment;
     this.magnitude = config.magnitude;
     this.segments = [];
-    this.pointWeight = config.pointWeight;
+    this.pointDiameter = config.pointDiameter;
     this.curveWeight = config.curveWeight;
     this.curveColor = config.curveColor;
     this.pointColor = config.pointColor;
@@ -52,23 +52,17 @@ class Path {
     this.segments.forEach((segment, index) => {
       if (index == 0 || index == this.segments.length - 1) {
         //console.log(index)
-      } else {
-        //stroke(this.pointColor);
-        noStroke();
+      }
+      else if(index == 2) {
+        fill(this.highlightColor);
+        segment.pointDiameter = this.pointDiameter * 1.25;
+        segment.draw();
+      }
+      else {
         fill(this.pointColor);
-        segment.pointWeight = lerp(this.pointWeight, this.curveWeight * 2, (index + 1) / (this.segments.length - 2));
+        segment.pointDiameter = lerp(this.pointDiameter, this.curveWeight * 2, (index + 1) / (this.segments.length - 2));
         segment.draw();
       }
     });
-
-    this.drawHighlightSegment();
-  }
-
-  drawHighlightSegment() {
-    //stroke(this.pointColor);
-    noStroke();
-    fill(this.highlightColor);
-    this.segments[2].pointWeight *= 1.5;
-    this.segments[2].draw();
   }
 }
