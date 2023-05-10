@@ -65,7 +65,7 @@ function setup() {
     path.draw();
   });
 
-  setInterval(refresh, 8000);
+  //setInterval(refresh, 8000);
 }
 
 function draw() {
